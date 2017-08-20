@@ -1,0 +1,19 @@
+<center>
+<p>
+  <strong>Name:</strong>
+  <%= @project.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @project.description %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @project.user.name  %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project), class: "btn btn-primary" %> |
+<%= link_to 'Back', projects_path, class: "btn btn-warning" %>
+</center>

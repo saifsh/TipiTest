@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TipiTest</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'application', 'http://fonts.googleapis.com/css?family=Raleway:400,700' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <% if flash[:notice] %>
+      <div class="alert alert-info">
+        <%= flash[:notice] %>
+      </div>
+   <% end %>
+   <% if flash[:alert] %>
+      <div class="alert alert-danger">
+        <%= flash[:alert] %>
+      </div>
+  <% end %>
+    <header class="navbar navbar-default" role="navigation">
+      <div class="navbar-inner">
+        <div class="container">
+          <div id="logo" class="navbar-brand"><%= link_to "TipiTest" %></div>
+            <nav class="collapse navbar-collapse navbar-ex1-collapse">
+                <% if user_signed_in? -%>
+  						        <ul class="nav navbar-nav navbar-right">
+                        <li><%= link_to current_user.name %></li>
+          							<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+                      </ul>
+                      <ul class="nav navbar-nav navbar-left">
+                        <li><%= link_to 'Project', projects_path %></li>
+                        <li><%= link_to 'Users', users_index_path %></li>
+                    </ul>
+                    <%else%>
+                    <ul class="nav navbar-nav navbar-right">
+                      <li><%= link_to "Login In", new_user_session_path %></li>
+                      <li><%= link_to "Register", new_user_registration_path %></li>
+                    </ul>
+               <%end%>
+          </nav>
+        </div>
+      </div>
+  </header>
+    <%= yield %>
+  </body>
+</html>
